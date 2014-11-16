@@ -34,8 +34,8 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="DTB-Rt-cVa"/>
-                                <exclude reference="aDp-dx-hW9"/>
                                 <exclude reference="foW-ik-zEd"/>
+                                <exclude reference="aDp-dx-hW9"/>
                                 <exclude reference="ZU3-Jx-6Ks"/>
                             </mask>
                         </variation>
@@ -45,8 +45,8 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="DTB-Rt-cVa"/>
-                                <include reference="aDp-dx-hW9"/>
                                 <include reference="foW-ik-zEd"/>
+                                <include reference="aDp-dx-hW9"/>
                                 <include reference="ZU3-Jx-6Ks"/>
                             </mask>
                         </variation>

@@ -33,11 +33,11 @@ CGFloat static kSpacing = 10.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self addSquaresForRowNumber:10 colNumber:4];
+    [self addSquareSubviewsToView:self.scrollView rowNumber:10 colNumber:4];
 }
 
 
-- (void)addSquaresForRowNumber:(NSUInteger)rows colNumber:(NSUInteger)columns
+- (void)addSquareSubviewsToView:(UIView *)view rowNumber:(NSUInteger)rows colNumber:(NSUInteger)columns
 {
     // compute the square edge size for each orientation according to the spacing and the number of columns
     [self squareEdgeSizesForColumnNumber:columns];
@@ -81,7 +81,7 @@ CGFloat static kSpacing = 10.0;
                 [self.widthConstraints addObject:squareWidth];
             }
             
-            [self.scrollView addSubview:newSquare];
+            [view addSubview:newSquare];
             
             // make the width equal to the height
             [newSquare addConstraint:[NSLayoutConstraint constraintWithItem:newSquare
@@ -92,7 +92,7 @@ CGFloat static kSpacing = 10.0;
                                                                  multiplier:1.0 constant:0.0]];
             if (leftSquare) {
                 // make new square the same width as its left neighbour
-                [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:newSquare
+                [view addConstraint:[NSLayoutConstraint constraintWithItem:newSquare
                                                                       attribute:NSLayoutAttributeWidth
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:leftSquare
@@ -107,7 +107,7 @@ CGFloat static kSpacing = 10.0;
         
         // for each row, pin the first square to the left edge of the scroll view, and the last square to the right edge
         horizontalConstraints = [NSString stringWithFormat:@"H:|-%@(spacing)-|", horizontalConstraints];
-        [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraints
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraints
                                                                                 options:NSLayoutFormatAlignAllCenterY
                                                                                 metrics:@{@"spacing": @(kSpacing)}
                                                                                   views:horizontalViewsDictionary]];
@@ -115,7 +115,7 @@ CGFloat static kSpacing = 10.0;
     
     // pin the first square of the first column to the top edge of the scroll view, and the last square to the bottom edge
     verticalConstraints = [NSString stringWithFormat:@"V:|-%@(spacing)-|", verticalConstraints];
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalConstraints
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalConstraints
                                                                            options:NSLayoutFormatAlignAllCenterX
                                                                            metrics:@{@"spacing": @(kSpacing)}
                                                                               views:verticalViewsDictionary]];
